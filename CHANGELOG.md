@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-01-14)
+
+
+### Features
+
+* initial commit ([#1](https://github.com/meow-meow-dev/generator/issues/1)) ([16ad7c1](https://github.com/meow-meow-dev/generator/commit/16ad7c12385d64805103ea09dd9d74bc93c96bbd))
+
 ## [3.3.2](https://github.com/meow-meow-dev/server-utilities/compare/v3.3.1...v3.3.2) (2025-01-11)
 
 
