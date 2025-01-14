@@ -1,0 +1,1 @@
+rm -rf dist && pnpm lint-staged && pnpm tsc:check && pnpm vitest:run

@@ -1,0 +1,72 @@
+{
+  "name": "@meow-meow-dev/generator",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Jérôme <jerome@meow-meow.dev>",
+  "type": "module",
+  "exports": {
+    "./actions": "./src/actions/index.ts",
+    "./client/components/box": "./src/client/components/box/index.ts",
+    "./generators": "./src/generators/index.ts",
+    "./helpers": "./src/helpers/index.ts",
+    "./package_json": "./src/package_json/index.ts",
+    "./validation": "./src/validation/index.ts"
+  },
+  "bin": {
+    "generate": "./dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "qa": "rm -rf dist && pnpm lint:check && pnpm prettier:check && pnpm tsc:check && pnpm unit_tests",
+    "tsc:check": "tsc -noEmit",
+    "unit_tests": "pnpm vitest:run",
+    "vitest:run": "vitest run",
+    "vitest:watch": "vitest"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "find-package-json": "^1.2.0",
+    "minimist": "^1.2.8",
+    "plop": "^4.0.1",
+    "valibot": "1.0.0-beta.11"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.6.0",
+    "@meow-meow-dev/shared-configs": "^1.4.5",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/find-package-json": "^1.2.6",
+    "@types/node": "^22.10.5",
+    "@vitest/coverage-istanbul": "^2.1.8",
+    "change-case": "^5.4.4",
+    "clean-package": "^2.2.0",
+    "commitizen": "^4.3.1",
+    "commitlint": "^19.6.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.17.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
