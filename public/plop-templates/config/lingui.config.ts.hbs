@@ -1,0 +1,14 @@
+import { defineConfig } from "@lingui/cli";
+
+export default defineConfig({
+  catalogs: [
+    {
+      exclude: ["**/*.d.ts"],
+      include: ["src/client"],
+      path: "<rootDir>/src/client/locales/{locale}/messages",
+    },
+  ],
+  compileNamespace: "es",
+  locales: {{{ toArray (append (split locales) sourceLocale) }}},
+  sourceLocale: {{{ toString sourceLocale }}},
+});

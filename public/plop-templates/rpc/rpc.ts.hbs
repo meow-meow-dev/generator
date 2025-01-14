@@ -1,0 +1,12 @@
+import { handleError } from "./handleError.js";
+import { honoClient } from "./honoClient.js";
+
+export async function {{ rpcName }}(): Promise</* XXX */> {
+  try {
+    const response = await honoClient.api.v1.XXX.${{ httpMethod}}({ /* XXX */ });
+
+    return await response.json();
+  } catch (error) {
+    handleError(error, "{{ errorMessage }}");
+  }
+}

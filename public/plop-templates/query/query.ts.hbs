@@ -1,0 +1,11 @@
+import type { UseSuspenseQueryOptions } from "@tanstack/react-query";
+import type { /* XXX */  } from "{{ projectName }}/client/types";
+
+import { {{ rpcName }} } from "{{ projectName }}/client/rpc";
+
+export function {{ rpcName }}Query(): UseSuspenseQueryOptions</* XXX */> {
+  return {
+    queryFn: {{ rpcName }},
+    queryKey: [/* XXX */],
+  } as const;
+}

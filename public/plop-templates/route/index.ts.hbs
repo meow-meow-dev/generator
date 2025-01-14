@@ -1,0 +1,11 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { getXXXQuery } from "XXX/client/tanstack/query/queries";
+
+export const Route = createFileRoute("/{{ extractRoute name }}/")({
+  loader: async ({ context: { queryClient } }) => {
+    const query = getXXXQuery();
+    await queryClient.ensureQueryData(query);
+
+    return { crumb: "XXX", query, title: "XXX" };
+  },
+});
