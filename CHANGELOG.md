@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/meow-meow-dev/generator/compare/v1.0.2...v1.1.0) (2025-01-15)
+
+
+### Features
+
+* add react hook generator ([#9](https://github.com/meow-meow-dev/generator/issues/9)) ([93be2eb](https://github.com/meow-meow-dev/generator/commit/93be2ebb2354b02bcc4aa470ecf56ecd650968e1))
+
 ## [1.0.2](https://github.com/meow-meow-dev/generator/compare/v1.0.1...v1.0.2) (2025-01-15)
 
 
