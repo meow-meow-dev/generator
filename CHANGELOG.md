@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/meow-meow-dev/generator/compare/v1.0.0...v1.0.1) (2025-01-15)
+
+
+### Bug Fixes
+
+* fix output path ([#5](https://github.com/meow-meow-dev/generator/issues/5)) ([b7d3d2a](https://github.com/meow-meow-dev/generator/commit/b7d3d2a44ba8975bd78c21d97c28f7fb82f2e943))
+
 ## 1.0.0 (2025-01-14)
 
 
