@@ -12,8 +12,7 @@ const argv = minimist(args);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-console.log(__dirname);
-const finder = findPackageJson(__dirname);
+const finder = findPackageJson();
 const packageJsonFile = finder.next().filename;
 if (!packageJsonFile) throw new Error("Unable to locate package.json");
 
