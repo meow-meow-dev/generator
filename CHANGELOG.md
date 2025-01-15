@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/meow-meow-dev/generator/compare/v1.0.1...v1.0.2) (2025-01-15)
+
+
+### Bug Fixes
+
+* improve generated unit tests ([#7](https://github.com/meow-meow-dev/generator/issues/7)) ([4425e59](https://github.com/meow-meow-dev/generator/commit/4425e59351d3843eb1dd589044ed6420ff8f3676))
+
 ## [1.0.1](https://github.com/meow-meow-dev/generator/compare/v1.0.0...v1.0.1) (2025-01-15)
 
 
