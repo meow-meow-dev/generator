@@ -2,6 +2,3 @@
 
 # Install packages
 pnpm i
-
-# Configure husky
-pnpm husky

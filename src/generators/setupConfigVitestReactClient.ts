@@ -3,7 +3,7 @@ import type { NodePlopAPI } from "plop";
 import { appendToFile } from "@meow-meow-dev/generator/actions";
 import * as v from "valibot";
 
-const jsDomKey = "jsDom";
+const jestDomKey = "jestDom";
 const mantineMocksKey = "mantineMocks";
 const setupsKey = "setups";
 const generateVitestConfigKey = "generateVitestConfig";
@@ -11,7 +11,7 @@ const generateVitestConfigKey = "generateVitestConfig";
 const answersSchema = v.strictObject({
   [generateVitestConfigKey]: v.boolean(),
   [setupsKey]: v.array(
-    v.union([v.literal(jsDomKey), v.literal(mantineMocksKey)]),
+    v.union([v.literal(jestDomKey), v.literal(mantineMocksKey)]),
   ),
 });
 
@@ -48,7 +48,7 @@ export function setupConfigVitestReactClient(plop: NodePlopAPI): void {
         force: true,
         path: "src/client/test/setup/jestDom.ts",
         skip: ({ setups }: Answers): string | undefined =>
-          setups.includes(jsDomKey) ? undefined : "Skipped adding jsDom",
+          setups.includes(jestDomKey) ? undefined : "Skipped adding jestDom",
         templateFile:
           "plop-templates/config/vitest/react_client/jestDom.ts.hbs",
         type: "add",
@@ -79,10 +79,10 @@ export function setupConfigVitestReactClient(plop: NodePlopAPI): void {
       },
       {
         choices: [
-          { checked: true, name: "JSDom", value: jsDomKey },
+          { checked: true, name: "Jest DOM", value: jestDomKey },
           { checked: true, name: "Mantine mocks", value: mantineMocksKey },
         ],
-        default: ["addJsDom", "addMantine"],
+        default: ["addJestDom", "addMantine"],
         message:
           "Which setups should we add ? Existing files will be overwritten",
         name: setupsKey,
