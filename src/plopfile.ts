@@ -5,6 +5,7 @@ import {
   setupConfigVitestReactClient,
   setupHonoRpc,
   setupReactComponent,
+  setupReactHook,
   setupReactPage,
   setupTanstackQueryQuery,
   setupTanstackRouterRoute,
@@ -12,6 +13,7 @@ import {
 import {
   componentPath,
   extractRoute,
+  hookPath,
   pagePath,
   routePath,
 } from "@meow-meow-dev/generator/helpers";
@@ -41,6 +43,8 @@ export default function (plop: NodePlopAPI): void {
 
   plop.setHelper("routePath", routePath);
 
+  plop.setHelper("hookPath", hookPath);
+
   plop.setHelper("componentPath", componentPath);
 
   plop.setHelper("pagePath", pagePath);
@@ -49,6 +53,7 @@ export default function (plop: NodePlopAPI): void {
   setupConfigVitestReactClient(plop);
   setupHonoRpc(plop);
   setupReactComponent(plop);
+  setupReactHook(plop);
   setupReactPage(plop);
   setupTanstackQueryQuery(plop);
   setupTanstackRouterRoute(plop);

@@ -22,7 +22,7 @@ export function setupReactPage(plop: NodePlopAPI): void {
   plop.setGenerator("react:page", {
     actions: [
       {
-        path: "src/{{pagePath name}}/{{pascalCase name}}.tsx",
+        path: "src/{{pagePath name}}/{{name}}.tsx",
         templateFile: "plop-templates/page/Page.tsx.hbs",
         type: "add",
       },

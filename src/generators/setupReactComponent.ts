@@ -26,12 +26,12 @@ export function setupReactComponent(plop: NodePlopAPI): void {
   plop.setGenerator("react:component", {
     actions: [
       {
-        path: "src/{{componentPath name}}/{{pascalCase name}}.tsx",
+        path: "src/{{componentPath name}}/{{name}}.tsx",
         templateFile: "plop-templates/component/Component.tsx.hbs",
         type: "add",
       },
       {
-        path: "src/{{componentPath name}}/{{pascalCase name}}.test.tsx",
+        path: "src/{{componentPath name}}/{{name}}.test.tsx",
         skip: ({ addUnitTest }: Answers): string | undefined =>
           addUnitTest ? undefined : "Skipped adding unit test",
         templateFile: "plop-templates/component/Component.test.tsx.hbs",
