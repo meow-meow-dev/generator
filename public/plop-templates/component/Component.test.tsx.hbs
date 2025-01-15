@@ -4,8 +4,9 @@ import type { ComponentProps } from "react";
 import { render, screen } from "@testing-library/react";
 import { TestWrapperWithRouter } from "eki-stamps/client/components/test_wrapper";
 import { afterAll, describe, it } from "vitest";
-import MatchMediaMock from "vitest-matchmedia-mock";
+
 import { {{ name }} } from "./{{ name }}.jsx"
+import React from "react"
 
 function buildTestComponent(
   props: ComponentProps<typeof {{ name }}>,
@@ -13,7 +14,7 @@ function buildTestComponent(
   // TODO declare elements required in tests 
   clearButton: HTMLElement;
 } {
-  function Component(): JXS.Element {
+  function Component(): React.JSX.Element {
     return <{{ name }} {...props} />;
   }
 
@@ -32,12 +33,6 @@ function buildTestComponent(
 }
 
 describe("{{ name }}", () => {
-    // TODO remove once the mock from Mantine docs is configured
-  const matchMediaMock = new MatchMediaMock();
-  afterAll(() => {
-    matchMediaMock.clear();
-  });
-
   it("XXX domes something", async ({ expect }) => {
     const { clearButton } = buildTestComponent({
       /* TODO add props */

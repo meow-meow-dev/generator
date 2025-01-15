@@ -26,6 +26,7 @@
     "lint:fix": "eslint . --fix",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
+    "prepare": "husky",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "qa": "rm -rf dist && pnpm lint:check && pnpm prettier:check && pnpm tsc:check && pnpm unit_tests",
