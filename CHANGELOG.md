@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/meow-meow-dev/generator/compare/v1.1.0...v1.2.0) (2025-01-17)
+
+
+### Features
+
+* add source path to options ([#12](https://github.com/meow-meow-dev/generator/issues/12)) ([f24dd57](https://github.com/meow-meow-dev/generator/commit/f24dd57b6017c812317689e385160becaccb0791))
+
 ## [1.1.0](https://github.com/meow-meow-dev/generator/compare/v1.0.2...v1.1.0) (2025-01-15)
 
 
