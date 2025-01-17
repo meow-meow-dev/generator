@@ -4,6 +4,8 @@ import { pagePath } from "./pagePath.js";
 
 describe("pagePath", () => {
   it("returns correct path for pages", ({ expect }) => {
-    expect(pagePath("EditProfilePage")).toEqual("client/pages/edit_profile");
+    expect(pagePath("src/", "EditProfilePage")).toEqual(
+      "src/pages/edit_profile",
+    );
   });
 });

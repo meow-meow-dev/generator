@@ -1,5 +1,7 @@
 import { snakeCase } from "change-case";
 
-export function componentPath(name: string): string {
-  return `client/components/${snakeCase(name)}`;
+import { removeTrailingSlash } from "./removeTrailingSlash.js";
+
+export function componentPath(srcPath: string, name: string): string {
+  return `${removeTrailingSlash(srcPath)}/components/${snakeCase(name)}`;
 }

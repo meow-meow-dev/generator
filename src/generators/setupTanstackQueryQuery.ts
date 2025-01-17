@@ -5,15 +5,18 @@ import { getPackageJsonName } from "@meow-meow-dev/generator/package_json";
 import { strictLowerCamelCaseRegexp } from "@meow-meow-dev/generator/validation";
 import * as v from "valibot";
 
-const answersSchema = v.strictObject({ rpcName: v.string() });
+const answersSchema = v.strictObject({
+  name: v.string(),
+  srcPath: v.string(),
+});
 
 export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
   plop.setActionType("tanstack:query:addToIndexTs", (answers): string => {
-    const { rpcName } = v.parse(answersSchema, answers);
+    const { name } = v.parse(answersSchema, answers);
 
     return addToIndexTs(
       "src/client/tanstack/query/queries",
-      `./${rpcName}Query.js`,
+      `./${name}Query.js`,
     );
   });
 
@@ -23,7 +26,7 @@ export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
         data: {
           projectName: getPackageJsonName(),
         },
-        path: "src/client/tanstack/query/queries/{{rpcName}}Query.ts",
+        path: "{{ removeTrailingSlash srcPath }}/tanstack/query/queries/{{ name }}Query.ts",
         templateFile: "plop-templates/query/query.ts.hbs",
         type: "add",
       },
@@ -35,12 +38,18 @@ export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
     prompts: [
       {
         message: "What is the RPC name ?",
-        name: "rpcName",
+        name: "name",
         type: "input",
-        validate: (rpcName): string | true => {
-          if (strictLowerCamelCaseRegexp.test(rpcName)) return true;
+        validate: (name): string | true => {
+          if (strictLowerCamelCaseRegexp.test(name)) return true;
           else return "RPC name must be in strict camel case";
         },
+      },
+      {
+        default: "src/client",
+        message: "Where shall we generate the code ?",
+        name: "srcPath",
+        type: "input",
       },
     ],
   });

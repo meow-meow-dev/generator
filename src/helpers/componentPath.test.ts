@@ -4,6 +4,8 @@ import { componentPath } from "./componentPath.js";
 
 describe("componentPath", () => {
   it("returns correct path for components", ({ expect }) => {
-    expect(componentPath("Box")).toEqual("client/components/box");
+    expect(componentPath("src/client", "Box")).toEqual(
+      "src/client/components/box",
+    );
   });
 });

@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { XXXPage } from "eki-stamps/client/pages/xxx";
+import { XXXPage } from "{{ projectName }}/client/pages/xxx";
 
 export const Route = createLazyFileRoute("/{{ extractRoute name }}/")({
   component: PageWrapper,

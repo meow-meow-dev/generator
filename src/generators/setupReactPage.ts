@@ -7,27 +7,36 @@ import * as v from "valibot";
 
 import { standardExport } from "./standardExport.js";
 
-const answersSchema = v.strictObject({ name: v.string() });
+const answersSchema = v.strictObject({
+  addPackageJsonExports: v.boolean(),
+  name: v.string(),
+  srcPath: v.string(),
+});
 
 export function setupReactPage(plop: NodePlopAPI): void {
   plop.setActionType(
     "react:page:addExportsToPackageJson",
     async (answers, _config, _plop): Promise<string> => {
-      const { name } = v.parse(answersSchema, answers);
+      const { addPackageJsonExports, name, srcPath } = v.parse(
+        answersSchema,
+        answers,
+      );
 
-      return addExportsToPackageJson(standardExport(pagePath(name)));
+      return addPackageJsonExports
+        ? addExportsToPackageJson(standardExport(pagePath(srcPath, name)))
+        : "Skipped adding exports to package.json";
     },
   );
 
   plop.setGenerator("react:page", {
     actions: [
       {
-        path: "src/{{pagePath name}}/{{name}}.tsx",
+        path: "{{pagePath srcPath name}}/{{pascalCase name}}.tsx",
         templateFile: "plop-templates/page/Page.tsx.hbs",
         type: "add",
       },
       {
-        path: "src/{{pagePath name}}/index.ts",
+        path: "{{pagePath srcPath name}}/index.ts",
         templateFile: "plop-templates/page/index.ts.hbs",
         type: "add",
       },
@@ -48,6 +57,18 @@ export function setupReactPage(plop: NodePlopAPI): void {
             return `Page name must end with '${pageSuffix}'`;
           else return true;
         },
+      },
+      {
+        default: "src/client",
+        message: "Where shall we generate the code ?",
+        name: "srcPath",
+        type: "input",
+      },
+      {
+        default: true,
+        message: "Add exports to package.json ?",
+        name: "addPackageJsonExports",
+        type: "confirm",
       },
     ],
   });
