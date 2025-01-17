@@ -4,6 +4,7 @@ import {
   setupConfigLingui,
   setupHonoRpc,
   setupReactComponent,
+  setupReactHook,
   setupReactPage,
   setupTanstackQueryQuery,
   setupTanstackRouterRoute,
@@ -11,6 +12,7 @@ import {
 import {
   componentPath,
   extractRoute,
+  hookPath,
   pagePath,
   removeTrailingSlash,
 } from "@meow-meow-dev/generator/helpers";
@@ -43,6 +45,8 @@ export default function (plop: NodePlopAPI): void {
     (route: string) => extractRoute(route).routePath,
   );
 
+  plop.setHelper("hookPath", hookPath);
+
   plop.setHelper("componentPath", componentPath);
 
   plop.setHelper("pagePath", pagePath);
@@ -50,6 +54,7 @@ export default function (plop: NodePlopAPI): void {
   setupConfigLingui(plop);
   setupHonoRpc(plop);
   setupReactComponent(plop);
+  setupReactHook(plop);
   setupReactPage(plop);
   setupTanstackQueryQuery(plop);
   setupTanstackRouterRoute(plop);

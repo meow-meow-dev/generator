@@ -24,7 +24,7 @@ function buildTestComponent(
     />,
   );
 
-  const clearButton = screen.getByTestId("clear-button");
+  const clearButton = screen.getByRole("button", { name: "clear"});
 
   return {
     ...utils,
@@ -33,7 +33,7 @@ function buildTestComponent(
 }
 
 describe("{{ name }}", () => {
-  it("XXX domes something", async ({ expect }) => {
+  it("XXX does something", async ({ expect }) => {
     const { clearButton } = buildTestComponent({
       /* TODO add props */
     });

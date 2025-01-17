@@ -1,2 +1,2 @@
 export * from "./pascalCaseRegexp.js";
-export * from "./strictLowerCamlCaseRegexp.js";
+export * from "./strictLowerCamelCaseRegexp.js";

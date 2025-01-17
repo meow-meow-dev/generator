@@ -1,0 +1,8 @@
+{{#if declareProps}}type {{ pascalCase name }}Props = {
+}{{/if}}
+
+{{#if declareReturn}}type {{ pascalCase name }}Return = {
+}{{/if}}
+
+export function {{ name }}({{#if declareProps}}{} : {{ pascalCase name }}Props{{/if}}) : {{#if declareReturn}}{{ pascalCase name }}Return {{else}}void{{/if}} { 
+}

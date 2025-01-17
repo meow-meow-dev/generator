@@ -2,7 +2,7 @@ import type { NodePlopAPI } from "plop";
 
 import { addToIndexTs } from "@meow-meow-dev/generator/actions";
 import { getPackageJsonName } from "@meow-meow-dev/generator/package_json";
-import { strictLowerCamlCaseRegexp } from "@meow-meow-dev/generator/validation";
+import { strictLowerCamelCaseRegexp } from "@meow-meow-dev/generator/validation";
 import * as v from "valibot";
 
 const answersSchema = v.strictObject({
@@ -41,7 +41,7 @@ export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
         name: "name",
         type: "input",
         validate: (name): string | true => {
-          if (strictLowerCamlCaseRegexp.test(name)) return true;
+          if (strictLowerCamelCaseRegexp.test(name)) return true;
           else return "RPC name must be in strict camel case";
         },
       },
