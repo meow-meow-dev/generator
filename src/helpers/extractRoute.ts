@@ -1,13 +1,17 @@
-export function extractRoute(name: string): string {
-  const prefix = "src/routes";
+import { addTrailingSlash } from "./addTrailingSlash.js";
 
-  const index = name.indexOf(prefix);
-  if (index == -1) throw new Error("Index === -1");
+export function extractRoute(name: string): {
+  routePath: string;
+  srcPath: string;
+} {
+  const splitPath = name.split("/");
+  const routesIndex = splitPath.indexOf("routes");
+  if (routesIndex == -1) throw new Error("routesIndex === -1");
 
-  let route = name.slice(index + prefix.length);
-  // remove leading & trailing slash
-  if (route.startsWith("/")) route = route.slice(1);
-  if (route.endsWith("/")) route = route.slice(0, -1);
+  const srcPath = splitPath.slice(0, routesIndex + 1).join("/");
+  const routePath = addTrailingSlash(
+    splitPath.slice(routesIndex + 1).join("/"),
+  );
 
-  return route;
+  return { routePath, srcPath };
 }

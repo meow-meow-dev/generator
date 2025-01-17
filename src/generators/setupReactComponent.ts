@@ -8,8 +8,10 @@ import * as v from "valibot";
 import { standardExport } from "./standardExport.js";
 
 const answersSchema = v.strictObject({
+  addPackageJsonExports: v.boolean(),
   addUnitTest: v.boolean(),
   name: v.string(),
+  srcPath: v.string(),
 });
 type Answers = v.InferOutput<typeof answersSchema>;
 
@@ -17,28 +19,33 @@ export function setupReactComponent(plop: NodePlopAPI): void {
   plop.setActionType(
     "react:component:addExportsToPackageJson",
     async (answers, _config, _plop): Promise<string> => {
-      const { name } = v.parse(answersSchema, answers);
+      const { addPackageJsonExports, name, srcPath } = v.parse(
+        answersSchema,
+        answers,
+      );
 
-      return addExportsToPackageJson(standardExport(componentPath(name)));
+      return addPackageJsonExports
+        ? addExportsToPackageJson(standardExport(componentPath(srcPath, name)))
+        : "Skipped adding exports to package.json";
     },
   );
 
   plop.setGenerator("react:component", {
     actions: [
       {
-        path: "src/{{componentPath name}}/{{pascalCase name}}.tsx",
+        path: "{{componentPath srcPath name}}/{{pascalCase name}}.tsx",
         templateFile: "plop-templates/component/Component.tsx.hbs",
         type: "add",
       },
       {
-        path: "src/{{componentPath name}}/{{pascalCase name}}.test.tsx",
+        path: "{{componentPath srcPath name}}/{{pascalCase name}}.test.tsx",
         skip: ({ addUnitTest }: Answers): string | undefined =>
           addUnitTest ? undefined : "Skipped adding unit test",
         templateFile: "plop-templates/component/Component.test.tsx.hbs",
         type: "add",
       },
       {
-        path: "src/{{componentPath name}}/index.ts",
+        path: "{{componentPath srcPath name}}/index.ts",
         templateFile: "plop-templates/component/index.ts.hbs",
         type: "add",
       },
@@ -61,8 +68,21 @@ export function setupReactComponent(plop: NodePlopAPI): void {
         },
       },
       {
+        default: "src/client",
+        message: "Where shall we generate the code ?",
+        name: "srcPath",
+        type: "input",
+      },
+      {
+        default: true,
         message: "Create a unit test ?",
         name: "addUnitTest",
+        type: "confirm",
+      },
+      {
+        default: true,
+        message: "Add exports to package.json ?",
+        name: "addPackageJsonExports",
         type: "confirm",
       },
     ],

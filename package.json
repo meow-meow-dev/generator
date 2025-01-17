@@ -8,7 +8,6 @@
   "type": "module",
   "exports": {
     "./actions": "./src/actions/index.ts",
-    "./client/components/box": "./src/client/components/box/index.ts",
     "./generators": "./src/generators/index.ts",
     "./helpers": "./src/helpers/index.ts",
     "./package_json": "./src/package_json/index.ts",

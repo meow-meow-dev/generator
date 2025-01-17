@@ -1,26 +1,28 @@
 import type { NodePlopAPI } from "plop";
 
 import { addToIndexTs } from "@meow-meow-dev/generator/actions";
+import { removeTrailingSlash } from "@meow-meow-dev/generator/helpers";
 import { strictLowerCamlCaseRegexp } from "@meow-meow-dev/generator/validation";
 import * as v from "valibot";
 
 const answersSchema = v.strictObject({
   errorMessage: v.string(),
   httpMethod: v.string(),
-  rpcName: v.string(),
+  name: v.string(),
+  srcPath: v.string(),
 });
 
 export function setupHonoRpc(plop: NodePlopAPI): void {
   plop.setActionType("hono:rpc:addToIndexTs", (answers): string => {
-    const { rpcName } = v.parse(answersSchema, answers);
+    const { name, srcPath } = v.parse(answersSchema, answers);
 
-    return addToIndexTs("src/client/rpc", `./${rpcName}.js`);
+    return addToIndexTs(`${removeTrailingSlash(srcPath)}/rpc`, `./${name}.js`);
   });
 
   plop.setGenerator("hono:rpc", {
     actions: [
       {
-        path: "src/client/rpc/{{rpcName}}.ts",
+        path: "{{ removeTrailingSlash srcPath }}/rpc/{{ name }}.ts",
         templateFile: "plop-templates/rpc/rpc.ts.hbs",
         type: "add",
       },
@@ -32,12 +34,18 @@ export function setupHonoRpc(plop: NodePlopAPI): void {
     prompts: [
       {
         message: "What is the function name ?",
-        name: "rpcName",
+        name: "name",
         type: "input",
-        validate: (rpcName): string | true => {
-          if (strictLowerCamlCaseRegexp.test(rpcName)) return true;
+        validate: (name): string | true => {
+          if (strictLowerCamlCaseRegexp.test(name)) return true;
           else return "rpc name must be in strict camel case";
         },
+      },
+      {
+        default: "src/client",
+        message: "Where shall we generate the code ?",
+        name: "srcPath",
+        type: "input",
       },
       {
         choices: [
