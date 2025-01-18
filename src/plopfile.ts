@@ -17,6 +17,8 @@ import {
   removeTrailingSlash,
 } from "@meow-meow-dev/generator/helpers";
 
+import { setupTanstackQueryMutation } from "./generators/setupTanstackQueryMutation.js";
+
 function toString(value: string): string {
   return `"${value}"`;
 }
@@ -56,6 +58,7 @@ export default function (plop: NodePlopAPI): void {
   setupReactComponent(plop);
   setupReactHook(plop);
   setupReactPage(plop);
+  setupTanstackQueryMutation(plop);
   setupTanstackQueryQuery(plop);
   setupTanstackRouterRoute(plop);
 }
