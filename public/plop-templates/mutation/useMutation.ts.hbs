@@ -1,0 +1,28 @@
+import type { UseMutationResult } from "@tanstack/react-query";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
+import { {{ queryName}} } from "{{ projectName }}/client/rpc";
+
+type MutationParameter = Parameters<typeof {{ queryName }}>[0];
+type MutationReturnType = Awaited<ReturnType<typeof {{ queryName }}>>;
+
+export function use{{ pascalCase queryName }}Mutation(): UseMutationResult<
+  MutationReturnType,
+  Error,
+  MutationParameter
+> {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  const mutation = useMutation<MutationReturnType, Error, MutationParameter>({
+    mutationFn: {{ queryName }},
+    onSuccess: async () => {
+      // Invalidate and refetch
+      await queryClient.invalidateQueries({ queryKey: [ /* TODO */] });
+      await router.invalidate();
+    },
+  });
+
+  return mutation;
+}

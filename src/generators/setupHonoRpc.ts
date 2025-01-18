@@ -1,9 +1,14 @@
 import type { NodePlopAPI } from "plop";
 
-import { addToIndexTs } from "@meow-meow-dev/generator/actions";
+import {
+  addExportsToPackageJson,
+  addToIndexTs,
+} from "@meow-meow-dev/generator/actions";
 import { removeTrailingSlash } from "@meow-meow-dev/generator/helpers";
 import { strictLowerCamelCaseRegexp } from "@meow-meow-dev/generator/validation";
 import * as v from "valibot";
+
+import { standardExport } from "./standardExport.js";
 
 const answersSchema = v.strictObject({
   errorMessage: v.string(),
@@ -13,21 +18,39 @@ const answersSchema = v.strictObject({
 });
 
 export function setupHonoRpc(plop: NodePlopAPI): void {
+  function rpcPath(srcPath: string): string {
+    return `${removeTrailingSlash(srcPath)}/rpc`;
+  }
+
+  plop.setHelper("rpcPath", rpcPath);
+
   plop.setActionType("hono:rpc:addToIndexTs", (answers): string => {
     const { name, srcPath } = v.parse(answersSchema, answers);
 
-    return addToIndexTs(`${removeTrailingSlash(srcPath)}/rpc`, `./${name}.js`);
+    return addToIndexTs(rpcPath(srcPath), `./${name}.js`);
   });
+
+  plop.setActionType(
+    "hono:rpc:addExportsToPackageJson",
+    async (answers, _config, _plop): Promise<string> => {
+      const { srcPath } = v.parse(answersSchema, answers);
+
+      return addExportsToPackageJson(standardExport(rpcPath(srcPath)));
+    },
+  );
 
   plop.setGenerator("hono:rpc", {
     actions: [
       {
-        path: "{{ removeTrailingSlash srcPath }}/rpc/{{ name }}.ts",
+        path: "{{ rpcPath srcPath }}/{{ name }}.ts",
         templateFile: "plop-templates/rpc/rpc.ts.hbs",
         type: "add",
       },
       {
         type: "hono:rpc:addToIndexTs",
+      },
+      {
+        type: "hono:rpc:addExportsToPackageJson",
       },
     ],
     description: "Create a hono RPC",

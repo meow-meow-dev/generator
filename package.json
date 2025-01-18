@@ -8,6 +8,7 @@
   "type": "module",
   "exports": {
     "./actions": "./src/actions/index.ts",
+    "./client/rpc": "./src/client/rpc/index.ts",
     "./generators": "./src/generators/index.ts",
     "./helpers": "./src/helpers/index.ts",
     "./package_json": "./src/package_json/index.ts",
