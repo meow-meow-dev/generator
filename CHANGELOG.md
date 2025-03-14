@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/meow-meow-dev/generator/compare/v1.3.0...v1.4.0) (2025-03-14)
+
+
+### Features
+
+* add Kysely queries ([#16](https://github.com/meow-meow-dev/generator/issues/16)) ([516c8be](https://github.com/meow-meow-dev/generator/commit/516c8bed1c093f111029105b42f09d4dbfcba8e9))
+
 ## [1.3.0](https://github.com/meow-meow-dev/generator/compare/v1.2.0...v1.3.0) (2025-01-18)
 
 
