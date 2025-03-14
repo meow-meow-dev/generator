@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/meow-meow-dev/generator/compare/v1.4.1...v1.5.0) (2025-03-14)
+
+
+### Features
+
+* improve Kyseky queries : specify table name, better defaults, allow to edit whole path ([#20](https://github.com/meow-meow-dev/generator/issues/20)) ([fc31905](https://github.com/meow-meow-dev/generator/commit/fc319055ebfbb57d38cd348f32ab596e8f9cb091))
+
 ## [1.4.1](https://github.com/meow-meow-dev/generator/compare/v1.4.0...v1.4.1) (2025-03-14)
 
 
