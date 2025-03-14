@@ -18,7 +18,7 @@ export const update{{ name }} = updateQuery<
   Updateable{{ name }}
 >(({ db, {{ camelCase name }}: { id, ...{{ camelCase name }} } }) =>
   db
-    .updateTable("{{ camelCase name }}")
+    .updateTable("{{ tableName }}")
     .set({{ camelCase name }})
     .where("id", "=", id)
     .returning([/* TODO list fields */])

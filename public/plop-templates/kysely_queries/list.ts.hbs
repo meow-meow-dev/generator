@@ -1,7 +1,7 @@
 import type {
   {{ name }},
   DB,
-} from "@rezume/public/server/types/database";
+} from "#server/types/database";
 import type { Selectable } from "kysely";
 
 import { listQuery } from "@meow-meow-dev/server-utilities/queries";
@@ -12,7 +12,7 @@ export const list{{ pluralName }} = listQuery<
   Selectable<{{ name }}>
 >(({ db }) =>
   db
-    .selectFrom("{{ camelCase name }}")
+    .selectFrom("{{ tableName }}")
     .select([
       /* TODO list fields */
     ])

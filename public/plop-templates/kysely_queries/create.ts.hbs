@@ -13,7 +13,7 @@ export const create{{ name }} = createQuery<
   Selectable<{{ name }}>
 >(({ {{ camelCase name }}, db }) =>
   db
-    .insertInto("{{ camelCase name }}")
+    .insertInto("{{ tableName }}")
     .values({{ camelCase name }})
     .returning("id")
     .executeTakeFirst()

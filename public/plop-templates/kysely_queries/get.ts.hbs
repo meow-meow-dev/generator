@@ -13,7 +13,7 @@ export const get{{ name }} = getQuery<
   Selectable<{{ name }}>
 >(({ db, id }) =>
   db
-    .selectFrom("{{ camelCase name }}")
+    .selectFrom("{{ tableName }}")
     .select([/* TODO fill up the fields */])
     .where("id", "=", id)
     .executeTakeFirst(),
