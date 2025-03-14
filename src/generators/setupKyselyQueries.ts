@@ -3,6 +3,7 @@ import type { NodePlopAPI } from "plop";
 import { addExportsToPackageJson } from "@meow-meow-dev/generator/actions";
 import { kyselyQueriesPath } from "@meow-meow-dev/generator/helpers";
 import { pascalCaseRegexp } from "@meow-meow-dev/generator/validation";
+import { camelCase } from "change-case";
 import * as v from "valibot";
 
 import { standardExport } from "./standardExport.js";
@@ -80,6 +81,7 @@ export function setupKyselyQueries(plop: NodePlopAPI): void {
         },
       },
       {
+        default: ({ name }: { name: string }): string => `${name}s`,
         message: 'What is the plural of this class name (e.g. "Users") ?',
         name: "pluralName",
         type: "input",
@@ -90,7 +92,13 @@ export function setupKyselyQueries(plop: NodePlopAPI): void {
         },
       },
       {
-        default: "src/server",
+        default: ({ name }: { name: string }): string => camelCase(name),
+        message: 'What is the table name (e.g. "user") ?',
+        name: "tableName",
+        type: "input",
+      },
+      {
+        default: "src/server/queries",
         message: "Where shall we generate the code ?",
         name: "srcPath",
         type: "input",

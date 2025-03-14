@@ -7,7 +7,7 @@ type Delete{{ name }}Props = { id: number };
 export const delete{{ name }} = deleteQuery<DB, Delete{{ name }}Props>(
   ({ db, id }) =>
     db
-      .deleteFrom("{{ camelCase name }}")
+      .deleteFrom("{{ tableName }}")
       .where("id", "=", id)
       .returning("id")
       .executeTakeFirst()
