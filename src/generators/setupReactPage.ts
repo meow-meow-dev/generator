@@ -65,7 +65,7 @@ export function setupReactPage(plop: NodePlopAPI): void {
         type: "input",
       },
       {
-        default: true,
+        default: false,
         message: "Add exports to package.json ?",
         name: "addPackageJsonExports",
         type: "confirm",

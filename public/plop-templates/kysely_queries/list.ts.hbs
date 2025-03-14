@@ -1,0 +1,20 @@
+import type {
+  {{ name }},
+  DB,
+} from "@rezume/public/server/types/database";
+import type { Selectable } from "kysely";
+
+import { listQuery } from "@meow-meow-dev/server-utilities/queries";
+
+export const list{{ pluralName }} = listQuery<
+  DB,
+  Record<string, unknown>,
+  Selectable<{{ name }}>
+>(({ db }) =>
+  db
+    .selectFrom("{{ camelCase name }}")
+    .select([
+      /* TODO list fields */
+    ])
+    .execute(),
+);

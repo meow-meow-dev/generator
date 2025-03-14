@@ -1,0 +1,15 @@
+import type { DB } from "#server/types/database";
+
+import { deleteQuery } from "@meow-meow-dev/server-utilities/queries";
+
+type Delete{{ name }}Props = { id: number };
+
+export const delete{{ name }} = deleteQuery<DB, Delete{{ name }}Props>(
+  ({ db, id }) =>
+    db
+      .deleteFrom("{{ camelCase name }}")
+      .where("id", "=", id)
+      .returning("id")
+      .executeTakeFirst()
+      .then((row) => row?.id),
+);

@@ -1,0 +1,20 @@
+import type { {{ name }}, DB } from "#server/types/database";
+import type { Selectable } from "kysely";
+
+import { getQuery } from "@meow-meow-dev/server-utilities/queries";
+
+type Get{{ name }}Props = {
+  id: number;
+};
+
+export const get{{ name }} = getQuery<
+  DB,
+  Get{{ name }}Props,
+  Selectable<{{ name }}>
+>(({ db, id }) =>
+  db
+    .selectFrom("{{ camelCase name }}")
+    .select([/* TODO fill up the fields */])
+    .where("id", "=", id)
+    .executeTakeFirst(),
+);
