@@ -80,7 +80,7 @@ export function setupReactComponent(plop: NodePlopAPI): void {
         type: "confirm",
       },
       {
-        default: true,
+        default: false,
         message: "Add exports to package.json ?",
         name: "addPackageJsonExports",
         type: "confirm",

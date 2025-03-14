@@ -4,7 +4,10 @@ import {
   addExportsToPackageJson,
   addToIndexTs,
 } from "@meow-meow-dev/generator/actions";
-import { removeTrailingSlash } from "@meow-meow-dev/generator/helpers";
+import {
+  kyselyQueriesPath,
+  removeTrailingSlash,
+} from "@meow-meow-dev/generator/helpers";
 import { getPackageJsonName } from "@meow-meow-dev/generator/package_json";
 import { strictLowerCamelCaseRegexp } from "@meow-meow-dev/generator/validation";
 import * as v from "valibot";
@@ -22,6 +25,8 @@ export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
   }
 
   plop.setHelper("queriesPath", queriesPath);
+
+  plop.setHelper("kyselyQueriesPath", kyselyQueriesPath);
 
   plop.setActionType("tanstack:query:addToIndexTs", (answers): string => {
     const { name, srcPath } = v.parse(answersSchema, answers);
@@ -45,7 +50,7 @@ export function setupTanstackQueryQuery(plop: NodePlopAPI): void {
           projectName: getPackageJsonName(),
         },
         path: "{{ queriesPath srcPath }}/{{ name }}Query.ts",
-        templateFile: "plop-templates/query/query.ts.hbs",
+        templateFile: "plop-templates/tanstack_query/query.ts.hbs",
         type: "add",
       },
       {

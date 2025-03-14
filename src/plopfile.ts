@@ -3,6 +3,7 @@ import type { NodePlopAPI } from "plop";
 import {
   setupConfigLingui,
   setupHonoRpc,
+  setupKyselyQueries,
   setupReactComponent,
   setupReactHook,
   setupReactPage,
@@ -61,4 +62,5 @@ export default function (plop: NodePlopAPI): void {
   setupTanstackQueryMutation(plop);
   setupTanstackQueryQuery(plop);
   setupTanstackRouterRoute(plop);
+  setupKyselyQueries(plop);
 }

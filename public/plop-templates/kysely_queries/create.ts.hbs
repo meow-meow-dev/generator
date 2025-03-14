@@ -1,0 +1,21 @@
+import type { {{ name }}, DB } from "#server/types/database";
+import type { Insertable, Selectable } from "kysely";
+
+import { createQuery } from "@meow-meow-dev/server-utilities/queries";
+
+type Create{{ name }}Props = {
+  {{ camelCase name }}: Omit<Insertable<{{ name }}>, "id">;
+};
+
+export const create{{ name }} = createQuery<
+  DB,
+  Create{{ name }}Props,
+  Selectable<{{ name }}>
+>(({ {{ camelCase name }}, db }) =>
+  db
+    .insertInto("{{ camelCase name }}")
+    .values({{ camelCase name }})
+    .returning("id")
+    .executeTakeFirst()
+    .then((row) => (row ? { ...{{ camelCase name }}, id: row.id } : undefined)),
+);

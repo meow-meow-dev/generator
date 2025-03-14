@@ -12,7 +12,7 @@ import * as v from "valibot";
 import { standardExport } from "./standardExport.js";
 
 const answersSchema = v.strictObject({
-  queryName: v.string(),
+  rpcName: v.string(),
   srcPath: v.string(),
 });
 
@@ -24,12 +24,12 @@ export function setupTanstackQueryMutation(plop: NodePlopAPI): void {
   plop.setHelper("mutationsPath", mutationsPath);
 
   plop.setActionType("tanstack:mutation:addToIndexTs", (answers): string => {
-    const { queryName, srcPath } = v.parse(answersSchema, answers);
+    const { rpcName, srcPath } = v.parse(answersSchema, answers);
     const pascalCase = plop.getHelper("pascalCase");
 
     return addToIndexTs(
       mutationsPath(srcPath),
-      `./use${pascalCase(queryName) as string}Mutation.js`,
+      `./use${pascalCase(rpcName) as string}Mutation.js`,
     );
   });
 
@@ -48,7 +48,7 @@ export function setupTanstackQueryMutation(plop: NodePlopAPI): void {
         data: {
           projectName: getPackageJsonName(),
         },
-        path: "{{ mutationsPath srcPath }}/use{{ pascalCase queryName }}Mutation.ts",
+        path: "{{ mutationsPath srcPath }}/use{{ pascalCase rpcName }}Mutation.ts",
         templateFile: "plop-templates/mutation/useMutation.ts.hbs",
         type: "add",
       },
@@ -62,12 +62,12 @@ export function setupTanstackQueryMutation(plop: NodePlopAPI): void {
     description: "Create a mutation for tanstack query",
     prompts: [
       {
-        message: "Which query is the mutation based on ?",
-        name: "queryName",
+        message: 'Which RPC is the mutation based on (e.g. "updateUser") ?',
+        name: "rpcName",
         type: "input",
-        validate: (queryName: string): string | true => {
-          if (strictLowerCamelCaseRegexp.test(queryName)) return true;
-          else return "Query name must be in strict camel case";
+        validate: (rpcName: string): string | true => {
+          if (strictLowerCamelCaseRegexp.test(rpcName)) return true;
+          else return "RPC name must be in strict camel case";
         },
       },
       {
