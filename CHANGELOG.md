@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/meow-meow-dev/generator/compare/v1.4.0...v1.4.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* fix imports in generated Kysely update query ([#18](https://github.com/meow-meow-dev/generator/issues/18)) ([456c0dd](https://github.com/meow-meow-dev/generator/commit/456c0dd1bb25fc770950180cfc64fed594b48a92))
+
 ## [1.4.0](https://github.com/meow-meow-dev/generator/compare/v1.3.0...v1.4.0) (2025-03-14)
 
 
