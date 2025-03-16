@@ -13,6 +13,7 @@ const answersSchema = v.strictObject({
   name: v.string(),
   pluralName: v.string(),
   srcPath: v.string(),
+  tableName: v.string(),
 });
 
 export function setupKyselyQueries(plop: NodePlopAPI): void {
