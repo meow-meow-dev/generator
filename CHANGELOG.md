@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/meow-meow-dev/generator/compare/v1.5.0...v1.5.1) (2025-03-16)
+
+
+### Bug Fixes
+
+* fix package.json exports generation for kysely queries ([#22](https://github.com/meow-meow-dev/generator/issues/22)) ([a4bc291](https://github.com/meow-meow-dev/generator/commit/a4bc291ac959405ce559663c46076f560dc07e33))
+
 ## [1.5.0](https://github.com/meow-meow-dev/generator/compare/v1.4.1...v1.5.0) (2025-03-14)
 
 
